@@ -73,6 +73,9 @@ function html5blank_header_scripts()
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
             wp_register_script('html5blankscripts-min', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0');
             wp_enqueue_script('html5blankscripts-min');
+
+        wp_register_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'), '1.0.0');
+        wp_enqueue_script('bootstrap');
     }
 }
 
