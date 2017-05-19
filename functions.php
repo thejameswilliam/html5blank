@@ -27,29 +27,6 @@ if (function_exists('add_theme_support'))
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
-    add_image_size('large', 700, '', true); // Large Thumbnail
-    add_image_size('medium', 250, '', true); // Medium Thumbnail
-    add_image_size('small', 120, '', true); // Small Thumbnail
-    add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
-
-    // Add Support for Custom Backgrounds - Uncomment below if you're going to use
-    /*add_theme_support('custom-background', array(
-    'default-color' => 'FFF',
-    'default-image' => get_template_directory_uri() . '/img/bg.jpg'
-    ));*/
-
-    // Add Support for Custom Header - Uncomment below if you're going to use
-    /*add_theme_support('custom-header', array(
-    'default-image'          => get_template_directory_uri() . '/img/headers/default.jpg',
-    'header-text'            => false,
-    'default-text-color'     => '000',
-    'width'                  => 1000,
-    'height'                 => 198,
-    'random-default'         => false,
-    'wp-head-callback'       => $wphead_cb,
-    'admin-head-callback'    => $adminhead_cb,
-    'admin-preview-callback' => $adminpreview_cb
-    ));*/
 
     // Enables post and comment RSS feed links to head
     add_theme_support('automatic-feed-links');
@@ -141,21 +118,8 @@ function html5blank_conditional_scripts()
 // Load HTML5 Blank styles
 function html5blank_styles()
 {
-    if (HTML5_DEBUG) {
-        // normalize-css
-        wp_register_style('normalize', get_template_directory_uri() . '/bower_components/normalize.css/normalize.css', array(), '3.0.1');
-
-        // Custom CSS
-        wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array('normalize'), '1.0');
-
-        // Register CSS
-        wp_enqueue_style('html5blank');
-    } else {
-        // Custom CSS
         wp_register_style('html5blankcssmin', get_template_directory_uri() . '/style.css', array(), '1.0');
-        // Register CSS
         wp_enqueue_style('html5blankcssmin');
-    }
 }
 
 // Register HTML5 Blank Navigation
@@ -164,7 +128,6 @@ function register_html5_menu()
     register_nav_menus(array( // Using array to specify more menus if needed
         'header-menu' => __('Header Menu', 'html5blank'), // Main Navigation
         'sidebar-menu' => __('Sidebar Menu', 'html5blank'), // Sidebar Navigation
-        'extra-menu' => __('Extra Menu', 'html5blank') // Extra Navigation if needed (duplicate as many as you need!)
     ));
 }
 
@@ -225,17 +188,6 @@ if (function_exists('register_sidebar'))
         'before_title' => '<h3>',
         'after_title' => '</h3>'
     ));
-
-    // Define Sidebar Widget Area 2
-    register_sidebar(array(
-        'name' => __('Widget Area 2', 'html5blank'),
-        'description' => __('Description for this widget-area...', 'html5blank'),
-        'id' => 'widget-area-2',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h3>',
-        'after_title' => '</h3>'
-    ));
 }
 
 // Remove wp_head() injected Recent Comment styles
@@ -264,17 +216,6 @@ function html5wp_pagination()
     ));
 }
 
-// Custom Excerpts
-function html5wp_index($length) // Create 20 Word Callback for Index page Excerpts, call using html5wp_excerpt('html5wp_index');
-{
-    return 20;
-}
-
-// Create 40 Word Callback for Custom Post Excerpts, call using html5wp_excerpt('html5wp_custom_post');
-function html5wp_custom_post($length)
-{
-    return 40;
-}
 
 // Create the Custom Excerpts callback
 function html5wp_excerpt($length_callback = '', $more_callback = '')
@@ -478,15 +419,3 @@ function create_post_type_html5()
 /*------------------------------------*\
     ShortCode Functions
 \*------------------------------------*/
-
-// Shortcode Demo with Nested Capability
-function html5_shortcode_demo($atts, $content = null)
-{
-    return '<div class="shortcode-demo">' . do_shortcode($content) . '</div>'; // do_shortcode allows for nested Shortcodes
-}
-
-// Shortcode Demo with simple <h2> tag
-function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 shortcode, allows for nesting within above element. Fully expandable.
-{
-    return '<h2>' . $content . '</h2>';
-}

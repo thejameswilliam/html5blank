@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                     'less/bootstrap/*.less'
                 ],
                 tasks: [
-                    'less'
+                    'less' 
                 ]
             }
         }
