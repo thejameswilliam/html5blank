@@ -27,7 +27,7 @@
 	<body <?php body_class(); ?>>
 
 		<!-- wrapper -->
-		<div class="wrapper">
+		<div class="container-fluid">
 
 			<!-- header -->
 			<header class="header clear" role="banner">
@@ -43,7 +43,7 @@
 
 					<!-- nav -->
 					<nav class="nav" role="navigation">
-						<?php html5blank_nav(); ?>
+						<?php mindblank_nav(); ?>
 					</nav>
 					<!-- /nav -->
 

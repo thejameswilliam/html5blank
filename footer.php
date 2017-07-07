@@ -3,8 +3,8 @@
 
 				<!-- copyright -->
 				<p class="copyright">
-					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name'); ?>. <?php _e('Powered by', 'html5blank'); ?>
-					<a href="//wordpress.org">WordPress</a> &amp; <a href="//html5blank.com">HTML5 Blank</a>.
+					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name'); ?>. <?php _e('Powered by', 'mindblank'); ?>
+					<a href="//wordpress.org">WordPress</a> &amp; <a href="//mindblank.com">mind Blank</a>.
 				</p>
 				<!-- /copyright -->
 

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: HTML5 Blank WordPress Theme\n"
+"Project-Id-Version: mind Blank WordPress Theme\n"
 "POT-Creation-Date: 2013-09-18 00:25+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jürgen Rabe | www.egado.de <rabe@egado.de>\n"
@@ -122,44 +122,44 @@ msgid "(Edit)"
 msgstr "(Bearbeiten)"
 
 #: ../functions.php:411 ../functions.php:412
-msgid "HTML5 Blank Custom Post"
-msgstr "HTML5 Blank Custom Post-Type"
+msgid "mind Blank Custom Post"
+msgstr "mind Blank Custom Post-Type"
 
 #: ../functions.php:413
 msgid "Add New"
 msgstr "Neuen Artikel erstellen"
 
 #: ../functions.php:414
-msgid "Add New HTML5 Blank Custom Post"
-msgstr "Neuen HTML5 Blank Custom Post erstellen"
+msgid "Add New mind Blank Custom Post"
+msgstr "Neuen mind Blank Custom Post erstellen"
 
 #: ../functions.php:415
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: ../functions.php:416
-msgid "Edit HTML5 Blank Custom Post"
-msgstr "HTML5 Blank Custom Post bearbeiten"
+msgid "Edit mind Blank Custom Post"
+msgstr "mind Blank Custom Post bearbeiten"
 
 #: ../functions.php:417
-msgid "New HTML5 Blank Custom Post"
-msgstr "Neuer HTML5 Blank Custom Post"
+msgid "New mind Blank Custom Post"
+msgstr "Neuer mind Blank Custom Post"
 
 #: ../functions.php:418 ../functions.php:419
-msgid "View HTML5 Blank Custom Post"
-msgstr "HTML5 Blank Custom Post ansehen"
+msgid "View mind Blank Custom Post"
+msgstr "mind Blank Custom Post ansehen"
 
 #: ../functions.php:420
-msgid "Search HTML5 Blank Custom Post"
-msgstr "HTML5 Blank Custom Post suchen"
+msgid "Search mind Blank Custom Post"
+msgstr "mind Blank Custom Post suchen"
 
 #: ../functions.php:421
-msgid "No HTML5 Blank Custom Posts found"
-msgstr "Keine HTML5 Blank Custom Posts gefunden"
+msgid "No mind Blank Custom Posts found"
+msgstr "Keine mind Blank Custom Posts gefunden"
 
 #: ../functions.php:422
-msgid "No HTML5 Blank Custom Posts found in Trash"
-msgstr "Keine HTML5 Blank Custom Posts im Papierkorb gefunden"
+msgid "No mind Blank Custom Posts found in Trash"
+msgstr "Keine mind Blank Custom Posts im Papierkorb gefunden"
 
 #: ../index.php:6
 msgid "Latest Posts"
