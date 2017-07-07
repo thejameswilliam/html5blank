@@ -1,29 +1,26 @@
 <?php
 /**
- * Author: Todd Motto | @toddmotto
+ * Author: Todd Motto | @toddmotto and Mindshare Labs | @mindsharelabs
  * URL: html5blank.com | @html5blank
  * Custom functions, support, custom post types and more.
  */
 
-require_once "modules/is-debug.php";
 
 /*------------------------------------*\
     External Modules/Files
 \*------------------------------------*/
 
-// Load any external files you have here
+include_once 'inc/content-functions.php';
 
 /*------------------------------------*\
     Theme Support
 \*------------------------------------*/
 
-if (!isset($content_width))
-{
+if (!isset($content_width)) {
     $content_width = 900;
 }
 
-if (function_exists('add_theme_support'))
-{
+if (function_exists('add_theme_support')) {
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
@@ -46,23 +43,23 @@ if (function_exists('add_theme_support'))
 function html5blank_nav()
 {
     wp_nav_menu(
-    array(
-        'theme_location'  => 'header-menu',
-        'menu'            => '',
-        'container'       => 'div',
-        'container_class' => 'menu-{menu slug}-container',
-        'container_id'    => '',
-        'menu_class'      => 'menu',
-        'menu_id'         => '',
-        'echo'            => true,
-        'fallback_cb'     => 'wp_page_menu',
-        'before'          => '',
-        'after'           => '',
-        'link_before'     => '',
-        'link_after'      => '',
-        'items_wrap'      => '<ul>%3$s</ul>',
-        'depth'           => 0,
-        'walker'          => ''
+        array(
+            'theme_location' => 'header-menu',
+            'menu' => '',
+            'container' => 'div',
+            'container_class' => 'menu-{menu slug}-container',
+            'container_id' => '',
+            'menu_class' => 'menu',
+            'menu_id' => '',
+            'echo' => true,
+            'fallback_cb' => 'wp_page_menu',
+            'before' => '',
+            'after' => '',
+            'link_before' => '',
+            'link_after' => '',
+            'items_wrap' => '<ul>%3$s</ul>',
+            'depth' => 0,
+            'walker' => ''
         )
     );
 }
@@ -71,8 +68,8 @@ function html5blank_nav()
 function html5blank_header_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
-            wp_register_script('html5blankscripts-min', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0');
-            wp_enqueue_script('html5blankscripts-min');
+        wp_register_script('html5blankscripts-min', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0');
+        wp_enqueue_script('html5blankscripts-min');
 
         wp_register_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'), '1.0.0');
         wp_enqueue_script('bootstrap');
@@ -92,8 +89,8 @@ function html5blank_conditional_scripts()
 // Load HTML5 Blank styles
 function html5blank_styles()
 {
-        wp_register_style('html5blankcssmin', get_template_directory_uri() . '/style.css', array(), '1.0');
-        wp_enqueue_style('html5blankcssmin');
+    wp_register_style('html5blankcssmin', get_template_directory_uri() . '/style.css', array(), '1.0');
+    wp_enqueue_style('html5blankcssmin');
 }
 
 // Register HTML5 Blank Navigation
@@ -143,15 +140,15 @@ function add_slug_to_body_class($classes)
 }
 
 // Remove the width and height attributes from inserted images
-function remove_width_attribute( $html ) {
-   $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
-   return $html;
+function remove_width_attribute($html)
+{
+    $html = preg_replace('/(width|height)="\d*"\s/', "", $html);
+    return $html;
 }
 
 
 // If Dynamic Sidebar Exists
-if (function_exists('register_sidebar'))
-{
+if (function_exists('register_sidebar')) {
     // Define Sidebar Widget Area 1
     register_sidebar(array(
         'name' => __('Widget Area 1', 'html5blank'),
@@ -168,7 +165,7 @@ if (function_exists('register_sidebar'))
 function my_remove_recent_comments_style()
 {
     global $wp_widget_factory;
-    
+
     if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])) {
         remove_action('wp_head', array(
             $wp_widget_factory->widgets['WP_Widget_Recent_Comments'],
@@ -223,14 +220,14 @@ function html5_style_remove($tag)
 }
 
 // Remove thumbnail width and height dimensions that prevent fluid images in the_thumbnail
-function remove_thumbnail_dimensions( $html )
+function remove_thumbnail_dimensions($html)
 {
     $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
     return $html;
 }
 
 // Custom Gravatar in Settings > Discussion
-function html5blankgravatar ($avatar_defaults)
+function html5blankgravatar($avatar_defaults)
 {
     $myavatar = get_template_directory_uri() . '/img/gravatar.jpg';
     $avatar_defaults[$myavatar] = "Custom Gravatar";
@@ -253,42 +250,43 @@ function html5blankcomments($comment, $args, $depth)
     $GLOBALS['comment'] = $comment;
     extract($args, EXTR_SKIP);
 
-    if ( 'div' == $args['style'] ) {
+    if ('div' == $args['style']) {
         $tag = 'div';
         $add_below = 'comment';
     } else {
         $tag = 'li';
         $add_below = 'div-comment';
     }
-?>
+    ?>
     <!-- heads up: starting < for the html tag (li or div) in the next line: -->
-    <<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
-    <?php if ( 'div' != $args['style'] ) : ?>
+    <<?php echo $tag ?><?php comment_class(empty($args['has_children']) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
+    <?php if ('div' != $args['style']) : ?>
     <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
-    <?php endif; ?>
+<?php endif; ?>
     <div class="comment-author vcard">
-    <?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-    <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
+        <?php if ($args['avatar_size'] != 0) echo get_avatar($comment, $args['avatar_size']); ?>
+        <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
     </div>
-<?php if ($comment->comment_approved == '0') : ?>
+    <?php if ($comment->comment_approved == '0') : ?>
     <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
-    <br />
+    <br/>
 <?php endif; ?>
 
-    <div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
-        <?php
-            printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'  ','' );
+    <div class="comment-meta commentmetadata"><a
+                href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)) ?>">
+            <?php
+            printf(__('%1$s at %2$s'), get_comment_date(), get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'), '  ', '');
         ?>
     </div>
 
     <?php comment_text() ?>
 
     <div class="reply">
-    <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+        <?php comment_reply_link(array_merge($args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
     </div>
-    <?php if ( 'div' != $args['style'] ) : ?>
+    <?php if ('div' != $args['style']) : ?>
     </div>
-    <?php endif; ?>
+<?php endif; ?>
 <?php }
 
 /*------------------------------------*\
@@ -329,8 +327,8 @@ add_filter('the_excerpt', 'do_shortcode'); // Allows Shortcodes to be executed i
 add_filter('excerpt_more', 'html5_blank_view_article'); // Add 'View Article' button instead of [...] for Excerpts
 add_filter('style_loader_tag', 'html5_style_remove'); // Remove 'text/css' from enqueued stylesheet
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to thumbnails
-add_filter('post_thumbnail_html', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
-add_filter('image_send_to_editor', 'remove_width_attribute', 10 ); // Remove width and height dynamic attributes to post images
+add_filter('post_thumbnail_html', 'remove_width_attribute', 10); // Remove width and height dynamic attributes to post images
+add_filter('image_send_to_editor', 'remove_width_attribute', 10); // Remove width and height dynamic attributes to post images
 
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether
@@ -353,35 +351,35 @@ function create_post_type_html5()
     register_taxonomy_for_object_type('post_tag', 'html5-blank');
     register_post_type('html5-blank', // Register Custom Post Type
         array(
-        'labels' => array(
-            'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
-            'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
-            'add_new' => __('Add New', 'html5blank'),
-            'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
-            'edit' => __('Edit', 'html5blank'),
-            'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
-            'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
-            'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
-            'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
-            'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
-        ),
-        'public' => true,
-        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
-        'has_archive' => true,
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'thumbnail'
-        ), // Go to Dashboard Custom HTML5 Blank post for supports
-        'can_export' => true, // Allows export in Tools > Export
-        'taxonomies' => array(
-            'post_tag',
-            'category'
-        ) // Add Category and Post Tags support
-    ));
+            'labels' => array(
+                'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
+                'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
+                'add_new' => __('Add New', 'html5blank'),
+                'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
+                'edit' => __('Edit', 'html5blank'),
+                'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
+                'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
+                'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
+                'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
+                'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
+                'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
+                'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
+            ),
+            'public' => true,
+            'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+            'has_archive' => true,
+            'supports' => array(
+                'title',
+                'editor',
+                'excerpt',
+                'thumbnail'
+            ), // Go to Dashboard Custom HTML5 Blank post for supports
+            'can_export' => true, // Allows export in Tools > Export
+            'taxonomies' => array(
+                'post_tag',
+                'category'
+            ) // Add Category and Post Tags support
+        ));
 }
 
 /*------------------------------------*\
